@@ -1,12 +1,15 @@
 import Content from '../components/Content'
-import useFetch from '../hooks/useFetch'
+import {useSelector} from 'react-redux'
 import {useState} from 'react'
 import useDebounce from '../hooks/useDebounce'
 import Error from '../components/showError'
+import useFetch from '../hooks/useFetch'
 
 export default function Dashboard() {
-  const {actors, loading, errMsg} = useFetch('all')
+  useFetch('all')
+  const {actors, loading, errMsg} = useSelector((state) => state.actorsReducer)
   const [search, setSearch] = useState('')
+  
   const debounce = useDebounce((nextValue) => setSearch(nextValue), 1500);
 
   const onChangeSearch = (event) => {
@@ -27,7 +30,7 @@ export default function Dashboard() {
   } else if (actors){
     return(
       <div className="Dashboard bg-fixed flex flex-wrap overflow-hidden lg:-mr-5 ">
-        <div className="flex place-items-center flex-col w-full mt-10 mb-5">
+        <div className="flex place-items-center flex-col w-full mt-24 mb-5">
           <div class="relative text-gray-600 focus-within:text-gray-400">
             <span class="absolute inset-y-0 left-0 flex items-center pl-2">
               <i class="p-1 focus:outline-none focus:shadow-outline">

@@ -1,10 +1,13 @@
 import {useState, useEffect} from 'react'
+import {useDispatch} from 'react-redux'
+import { saveFetch, fetchDetail } from "../store/actions/actorsAction";
 
 export default function useFetch(url) {
-    console.log(url, "<< url");
+    const dispatch = useDispatch()
     const [actors, setActors] = useState([])
     const [loading, setLoading] = useState(true)
     const [errMsg, setErrMsg] = useState('')
+
 
     useEffect(() => {
         fetch(`https://akabab.github.io/starwars-api/api/${url}.json`)
@@ -19,6 +22,11 @@ export default function useFetch(url) {
             }
         })
         .then(data => {
+            if (url === 'all') {
+                dispatch(saveFetch(data))
+            } else {
+                dispatch(fetchDetail(data));
+            }
             setActors(data)
         })
         .catch(err => setErrMsg(err.message))
