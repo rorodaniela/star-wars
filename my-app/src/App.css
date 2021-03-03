@@ -1,11 +1,21 @@
-.App {
+.Dashboard {
   background-image: url('https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-25.jpg');
   min-height:97.7vh;
   animation: shrink 12s infinite alternate;
   background-attachment: fixed;
   background-size: cover;
   object-fit: cover;
-  stroke-opacity: inherit;
+}
+
+.Collections {
+  background-image: url('https://www.denofgeek.com/wp-content/uploads/2020/05/Star-Destroyer.jpg?fit=1920%2C1080');
+  min-height:97.7vh;
+  background-size: cover;
+}
+
+.Error {
+    background-image: url('https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-36-1.jpg');
+    min-height:97.7vh;
 }
 
 @keyframes shrink {

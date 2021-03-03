@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react'
 
 export default function useFetch(url) {
+    console.log(url, "<< url");
     const [actors, setActors] = useState([])
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState('')
+    const [errMsg, setErrMsg] = useState('')
 
     useEffect(() => {
         fetch(`https://akabab.github.io/starwars-api/api/${url}.json`)
@@ -20,10 +21,10 @@ export default function useFetch(url) {
         .then(data => {
             setActors(data)
         })
-        .catch(err => setError(err.message))
+        .catch(err => setErrMsg(err.message))
         .finally(()=> setLoading(false))
 
     }, [])
 
-    return {actors, loading, error}
+    return {actors, loading, errMsg}
 }

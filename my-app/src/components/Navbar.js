@@ -1,4 +1,4 @@
-
+import {Link} from 'react-router-dom'
 export default function Navbar() {
   return (
     <nav style={{backgroundImage: "url('https://img.pngio.com/star-wars-background-png-1-png-image-star-wars-background-png-1920_1080.png')"}}>
@@ -35,8 +35,12 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                     <div className="flex space-x-4">
-                    <a href="#" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                    <a href="#" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Collections</a>
+                    <Link to ="/" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                        Dashboard
+                    </Link>
+                    <Link to="/collections" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                        Collections
+                    </Link>
                     </div>
                 </div>
             </div>
@@ -47,8 +51,12 @@ export default function Navbar() {
         <div className="sm:hidden" id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-            <a href="#" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-            <a href="#" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Collections</a>
+            <Link to ="/" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Dashboard
+            </Link>
+            <Link to="/collections" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Collections
+            </Link>
         </div>
         </div>
     </nav>
