@@ -1,17 +1,40 @@
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCollection } from "../store/actions/collectionAction";
+import Swal from 'sweetalert2'
 
 export default function Content(props) {
     const history = useHistory();
     const dispatch = useDispatch();
+    const {collections} = useSelector((state) => state.collectionsReducer)
 
     const goDetail = () => {
         history.push(`/detail/${props.actor.id}`);
     };
 
     const handleFavorite = () => {
-        dispatch(addCollection(props.actor));
+        const exist = collections.find(function(actor) {
+            if (actor.id === props.actor.id) {
+                return true
+            } else {
+                return false
+            }
+        })
+        if (exist) {
+            Swal.fire({
+                title: `Your already have ${props.actor.name} in your collections`,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        } else {
+            dispatch(addCollection(props.actor));
+            Swal.fire({
+                icon: "success",
+                title: `${props.actor.name} has been saved to your collections`,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
     };
 
     return (

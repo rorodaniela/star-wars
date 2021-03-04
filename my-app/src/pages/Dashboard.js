@@ -1,14 +1,19 @@
 import Content from '../components/Content'
-import {useSelector} from 'react-redux'
-import {useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {useEffect, useState} from 'react'
 import useDebounce from '../hooks/useDebounce'
-import Error from '../components/showError'
-import useFetch from '../hooks/useFetch'
+import {saveFetch} from '../store/actions/actorsAction'
+import Loading from '../components/Loading'
+// import Error from '../components/showError'
 
 export default function Dashboard() {
-  useFetch('all')
-  const {actors, loading, errMsg} = useSelector((state) => state.actorsReducer)
+  const {actors, loading} = useSelector((state) => state.actorsReducer)
   const [search, setSearch] = useState('')
+  const dispatch = useDispatch()
+
+  useEffect(()=> {
+    dispatch(saveFetch('all'))
+  }, [])
   
   const debounce = useDebounce((nextValue) => setSearch(nextValue), 1500);
 
@@ -22,11 +27,11 @@ export default function Dashboard() {
   })
   
   if (loading){
-    return(
-      <div>
-        <h1>loading...</h1>
-      </div>
-    )
+    return (
+        <div className="Dashboard bg-fixed flex flex-wrap overflow-hidden lg:-mr-5  pt-40">
+            <Loading />
+        </div>
+    );
   } else if (actors){
     return(
       <div className="Dashboard bg-fixed flex flex-wrap overflow-hidden lg:-mr-5 ">

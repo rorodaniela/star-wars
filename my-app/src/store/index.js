@@ -1,4 +1,5 @@
-import {combineReducers, createStore} from 'redux'
+import {combineReducers, createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
 import collectionsReducer from './reducers/collectionReducer'
 import actorsReducer from './reducers/actorsReducers'
 
@@ -7,6 +8,8 @@ const rootReducers = combineReducers({
     actorsReducer
 })
 
-const store = createStore(rootReducers)
+const middlewareEnhancer = applyMiddleware(thunk)
+
+const store = createStore(rootReducers, middlewareEnhancer)
 
 export default store

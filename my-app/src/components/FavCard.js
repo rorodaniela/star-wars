@@ -1,4 +1,5 @@
 export default function FavCard(props) {
+
     return (
         <div className="py-4">
             <div className=" shadow-lg group container  rounded-md bg-white  w-60 flex justify-center items-center  mx-auto">
@@ -14,7 +15,7 @@ export default function FavCard(props) {
                 </div>
                 <div className="absolute opacity-0 fd-sh group-hover:opacity-100">
                     <div className="pt-5 text-center">
-                        <button className="text-center rounded-lg p-1 bg-white  text-gray-700 font-bold text-md">
+                        <button onClick ={() => props.removedActor(props.actor.id)} className="text-center rounded-lg p-1 bg-white  text-gray-700 font-bold text-md">
                             Remove
                         </button>
                     </div>

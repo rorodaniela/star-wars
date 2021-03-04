@@ -4,3 +4,10 @@ export const addCollection = (actor) => {
         favActor: actor
     }
 }
+
+export const removeCollection = (actor) => {
+    return {
+        type: 'COLLECTIONS/REMOVE',
+        favActor: actor
+    }
+}

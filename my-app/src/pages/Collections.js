@@ -1,9 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FavCard from "../components/FavCard";
+import { removeCollection } from "../store/actions/collectionAction";
 
 export default function Collections() {
     const { collections } = useSelector((state) => state.collectionsReducer);
-    console.log(collections, "<< collection actor");
+    const dispatch = useDispatch()
+   
+    const removedActor = (id) => {
+        for (let i = 0; i < collections.length; i++) {
+            let actor = collections[i];
+            if (actor.id === id) {
+                collections.splice(i, 1)
+                dispatch(removeCollection(collections))
+                break
+            }
+        }
+    } 
 
     return (
         <div className="Collections">
@@ -15,7 +27,7 @@ export default function Collections() {
                     {collections.map((actor) => {
                         return (
                             <div class="w-full overflow-hidden lg:my-3 lg:px-3 lg:w-1/4">
-                                <FavCard actor={actor} />
+                                <FavCard actor={actor} removedActor={removedActor} />
                             </div>
                         );
                     })}
